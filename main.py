@@ -27,10 +27,18 @@ def giveHint(level):
                   ]
      st.write(listOfHints[level])
 
-def giveSolution(level):
-     if level+1==1:
+def giveSolution(xyz):
+     if xyz==1:
           st.image("code1.png")
           st.image("solution1a.png")
+     if xyz==2:
+          st.image("sol2.png")
+     if xyz==3:
+          st.image("sol3.png")
+     if xyz==4:
+          st.image("sol4.png")
+     if xyz==5:
+          st.image("sol5.png")
 
 #placeholder1 = st.empty()
 #placeholder2 = st.empty()     
@@ -87,37 +95,54 @@ def moveOn():
           playerProgress
           bar.progress(playerProgress+0.07, text=f"Progress: {round((playerProgress+0.07)*100)}%")
 
-c1,c2,c3,c4,c5=st.colums(5)
+c1,c2,c3,c4,c5=st.columns(5)
 with c1:
      if st.button("Level 1"):
           levelsCompleted = 0
-          bar.progress(0, text=f"Progress: 0%")
           webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson1.md")
           lesson(1)
 with c2:
      if st.button("Level 2"):
-     levelsCompleted = 1
-     bar.progress(0, text=f"Progress: 20%")
-     webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson2.md")
-     lesson(1)
+          levelsCompleted = 1
+          webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson2.md")
+          lesson(2)
 with c3:
      if st.button("Level 3"):
-     levelsCompleted = 2
-     bar.progress(0, text=f"Progress: 40%")
-     webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson3.md")
-     lesson(1)
+          levelsCompleted = 2
+          webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson3.md")
+          lesson(3)
 with c4:
      if st.button("Level 4"):
-     levelsCompleted = 3
-     bar.progress(0, text=f"Progress: 60%")
-     webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson4.md")
-     lesson(1)
+          levelsCompleted = 3
+          webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson4.md")
+          lesson(4)
 with c5:
-     if st.button("Level 5"):
-     levelsCompleted = 4
-     bar.progress(0, text=f"Progress: 80%")
-     webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson5.md")
-     lesson(1)
+          if st.button("Level 5"):
+               levelsCompleted = 4
+               webbrowser.open_new_tab("https://github.com/Shiven121S/MakeSPP/blob/main/lesson5.md")
+               lesson(5)
+st.write("")
+lev = st.slider("LEVEL", 1, 5, 1, 1)
+levelsCompleted = lev-1
+a1, a2 = st.columns(2)
+with a1:
+     hintbut = st.button("Get Hint")
+     if hintbut:
+          giveHint(levelsCompleted)
+with a2:
+     solbut = st.button("Get Solution")
+     if solbut:
+          giveSolution(lev)
+if lev==1:
+     bar.progress(0, text=f"Progress: 20%")
+elif lev==2:
+     bar.progress(40, text=f"Progress: 40%")
+elif lev==3:
+     bar.progress(60, text=f"Progress: 60%")
+elif lev==4:
+     bar.progress(80, text=f"Progress: 80%")
+elif lev==5:
+     bar.progress(100, text=f"Progress: 100%")
 #if curSub==1 and levelsCompleted==0:
      #lesson(1)
 #if curSub==2:
